@@ -1,21 +1,23 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../Auth';
 import "./About.css";
+import Nav from "../Nav.jsx"
 
 const About = () => {
+  const isconnected = useAuth((state) => state.connected)
   return (
     <div>
-    <section>
-       <div>
-       <ul className = 'nav-ul'>
+      <section>
+      <ul className = 'nav-ul'>
        </ul>
-       </div>
-    </section>
-    <section>
+       <div> <Nav/> </div>
+     </section>
+    <section className='head'>
     <div className='sub-main'>
-      <h1 className='headline'>Keep Learning.</h1>
-      <h3 className='subline'> We envision a world where anyone, anywhere has the power to transform their lives through learning..</h3>
-      <button id='abtbutton' href="#">Get Started</button>
-    </div>
+      <h1 id='headline'>Keep Learning.</h1>
+      <h3 className='subline'> We envision a world where anyone, anywhere has the power to transform their lives through learning.</h3>
+      </div>
   </section>
     <section>
     <div className='footer-first'>
@@ -48,37 +50,37 @@ const About = () => {
          world. BrainLab is the global online learning platform that offers anyone, anywhere access to online courses 
         from world-class teachers and companies.</h3>
     </section>
-   <section className="container">
-      <div className="card">
-        <div className="image">
+   <section id="container">
+      <div id="card">
+        <div id="image">
         </div>
         <h2>Python</h2>
         <p>Python Decorators and Writing for Real Python | Real Python Podcast #1</p>
       </div>
-      <div className="card">
-        <div className="image2">
+      <div id="card">
+        <div id="image2">
         </div>
         <h2>AI</h2>
         <p>Introduction to Artificial Intelligence For Beginners</p>
       </div>
-      <div className="card">
-        <div className="image3">
+      <div id="card">
+        <div id="image3">
         </div>
         <h2>Marketing</h2>
         <p>Best Digital Marketing Company In Kochi | #1 Agency</p>
       </div>
-      <div className="card">
-        <div className="image4">
+      <div id="card">
+        <div id="image4">
         </div>
         <h2>Japanese</h2>
         <p>Learn Hiragana, Katakana and Kanji for Beginners</p>
       </div>
     </section>
   <section>
-  <div className='footer-third'>
+  <div id='footer-third'>
    <h3>Join our global community and start learning today!</h3>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <button className='thirdfooterbtn' href="#">Join now</button>
+  <button id='thirdfooterbtn' href="#"><Link to="/signup"><h3 style = {{ textDecoration : "none", paddingTop: "0px", margin : "0px", color : "white" }} >Join now</h3></Link></button>
   </div>
   <div className='footer-last'>
   <p>©2023 BrainLab Inc. All rights reserved.</p>

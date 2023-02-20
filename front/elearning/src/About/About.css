@@ -1,3 +1,7 @@
+
+ /* Import Google font - Poppins */
+ @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
 .main {
   text-align: center;
   justify-content: center;
@@ -15,7 +19,7 @@
   background-image: linear-gradient(to right, #fad3fc , #a1dce8);
 }
 
-.headline {
+.head #headline {
   font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
   font-feature-settings: 'pnum' on, 'lnum' on;
   font-size: 106px;
@@ -41,6 +45,7 @@
     font-size: 25px;
     border: none;
     cursor: pointer;
+    text-align: center;
 }
 
 .nav-li {
@@ -52,7 +57,7 @@
 
 .nav-ul {
   background-color: #f4f7ff;
-  min-height: 10vh;
+  height: 100px;
 }
 
 .footer-first {
@@ -88,7 +93,7 @@
   background-color: aliceblue;
 }
 
-.footer-third {
+#footer-third {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,14 +102,14 @@
   border: 2px solid rgb(0, 0, 0);
 }
 
-.footer-third h3 {
+#footer-third h3 {
  margin: 0 0 10px 0; 
  padding-top: 20px; 
  font-family: Source Sans Pro,sans-serif;
 }
 
 
-.thirdfooterbtn {
+#footer-third #thirdfooterbtn {
   margin-top: -10px;
   padding: 10px 20px;
   align-items: center;
@@ -134,9 +139,6 @@
     vertical-align: top;
     width: 40%;
 }
-
- /* Import Google font - Poppins */
- @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
  * {
    margin: 0;
    padding: 0;
@@ -166,7 +168,7 @@
  }
 
  
- .container {
+ #container {
    display: flex;
    gap: 12px;
    max-width: 700px;
@@ -180,7 +182,7 @@
    border-radius: 10px;
    
  }
- .container .card {
+ #container #card {
    display: flex;
    flex: 0 0 100%;
    flex-direction: column;
@@ -202,7 +204,7 @@
     }
   }
  
- .card .image {
+ #card #image {
    height: 150px;
    width: 150px;
    padding: 4px;
@@ -211,7 +213,7 @@
    border-radius: 50%;
  }
 
- .card .image2 {
+ #card #image2 {
   height: 150px;
   width: 150px;
   padding: 4px;
@@ -220,7 +222,7 @@
   border-radius: 50%;
 }
 
-.card .image3 {
+#card #image3 {
   height: 150px;
   width: 150px;
   padding: 4px;
@@ -229,7 +231,7 @@
   border-radius: 50%;
 }
 
-.card .image4 {
+#card #image4 {
   height: 150px;
   width: 150px;
   padding: 4px;
@@ -238,14 +240,14 @@
   border-radius: 50%;
 }
 
- .card h2 {
+ #card h2 {
    margin-top: 25px;
    color: #333;
    font-size: 22px;
    font-weight: 600;
  }
 
- .card p {
+ #card p {
    margin-top: 4px;
    font-size: 18px;
    font-weight: 400;
@@ -259,7 +261,7 @@
   padding: 30px;
   border-radius: 12px;
   color: #0e0e0e;
-  min-height: 58vh;
+  min-height: 52vh;
   display: inline;
   align-items: center;
   justify-content: center;

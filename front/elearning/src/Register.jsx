@@ -1,25 +1,37 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./auth.css";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
+import Nav from "./Nav.jsx";
+import Swal from "sweetalert2";
+import { useAuth } from "./Auth";
 const Register = (props) => {
+  const isconnected = useAuth((state) => state.connected)
+  const navigate = useNavigate()
+  useEffect (()=> {
+    if (isconnected) {return navigate("/") }}
+,[])
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
   const [conPass, setConPass] = useState("");
   const [name, setName] = useState("");
   const [lastname, setLastName] = useState("");
   const [speciality, setSepciality] = useState("");
-  const [img, setImg] = useState("https://cdn-icons-png.flaticon.com/512/149/149071.png");
+  const [img, setImg] = useState(
+    "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+  );
   const [username, setUsername] = useState("");
   const [address, setAdress] = useState("");
   const [age, setAge] = useState(0);
   const [role, setRole] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
-  const ref = useRef()
+  const ref = useRef();
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    ref.current.selectedIndex && setRole(ref.current.selectedIndex) 
-     axios.post("http://127.0.0.1:5173/api/users/signup", {
+    ref.current.selectedIndex && setRole(ref.current.selectedIndex);
+    axios
+      .post("http://127.0.0.1:5173/api/users/signup", {
         name,
         lastname,
         username,
@@ -30,12 +42,20 @@ const Register = (props) => {
         age,
         role,
         speciality,
-      }).then
-      (msg=>alert(msg.data)).catch(err=>console.log(err)) 
+      })
+      .then((msg) => msg.data == "user created" ? navigate("/login")
+      : Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: msg.data,
+      }))
+      .catch((err) => console.log(err));
   };
   return (
+    <><Nav/>
+    <div className="whole">
     <div className="parent">
-      <div className="neighboring-banner">
+      <div id="neighboring-banner">
         <ul>
           <li className="lName">Brainlab</li>
           <li className="headline">Keep Learning.</li>
@@ -45,7 +65,7 @@ const Register = (props) => {
       </div>
       <div className="auth-form-container">
         <h2>CREATE A NEW ACCOUNT</h2>
-        <form className="register-form" onSubmit={(e)=>handleSubmit(e)}>
+        <form className="register-form" onSubmit={(e) => handleSubmit(e)}>
           <label htmlFor="name">First name:</label>
           <input
             value={name}
@@ -101,12 +121,13 @@ const Register = (props) => {
           />
           <label htmlFor="age">Age:</label>
           <input
-            onChange={(e) => setAge((e.target.value))}
+            onChange={(e) => setAge(e.target.value)}
             placeholder="Between 15 - 65 "
             id="age"
           />
           <label htmlFor="role">Choose a role:</label>
-          <select ref={ref}
+          <select
+            ref={ref}
             value={role}
             onChange={(e) => setRole(e.target.value)}
             id="roles"
@@ -114,26 +135,27 @@ const Register = (props) => {
             <option value="Student">Student</option>
             <option value="Teacher">Teacher</option>
           </select>
-          {ref.current?.selectedIndex && 
-          <><label htmlFor="speciality">Speciality:</label>
-          <input
-            value={speciality}
-            onChange={(e) => setSepciality(e.target.value)}
-            id="speciality"
-            placeholder="eg: physics, science"
-          />
-          </>}
+          {ref.current?.selectedIndex && (
+            <>
+              <label htmlFor="speciality">Speciality:</label>
+              <input
+                value={speciality}
+                onChange={(e) => setSepciality(e.target.value)}
+                id="speciality"
+                placeholder="eg: physics, science"
+              />
+            </>
+          )}
           <button className = "regButton" type="submit">Register</button>
           {errorMessage && <p>{errorMessage}</p>}
         </form>
-        <button
-           id="link-btn"
-          onClick={() =>redirect("/login")}
-        >
+        <button id="link-btn" onClick={() => navigate("/login")}>
           Already have an account? Login here!
         </button>
       </div>
     </div>
+    </div>
+    </>
   );
 };
 
